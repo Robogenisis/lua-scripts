@@ -1423,6 +1423,11 @@ sm.widgets.update_script_choices = dt.new_widget("combobox"){
   selected = 1,
   changed_callback = function(this)
     pref_write("update_script_choices", "integer", this.selected)
+    if string.match(sm.installed_repositories[this.selected].directory, ds.sanitize_lua(SYSTEM_LUA_DIR)) then
+      sm.widgets.update.sensitive = false
+    else
+      sm.widgets.update.sensitive = true
+    end
   end,
   "placeholder",
 }
