@@ -792,7 +792,7 @@ local function scan_scripts(script_dir)
   return script_count
 end
 
-local function update_scripts()
+local function update_scripts(dir)
   local old_log_level = set_log_level(sm.log_level)
   local result = false
 
@@ -803,7 +803,7 @@ local function update_scripts()
     return
   end
 
-  local git_command = "cd " .. LUA_DIR .. " " .. CS .. " " .. git .. " pull"
+  local git_command = "cd " .. dir .. " " .. CS .. " " .. git .. " pull"
   log.msg(log.debug, "update git command is " .. git_command)
 
   if dt.configuration.running_os == "windows" then
@@ -1423,10 +1423,12 @@ sm.widgets.update_script_choices = dt.new_widget("combobox"){
   selected = 1,
   changed_callback = function(this)
     pref_write("update_script_choices", "integer", this.selected)
-    if string.match(sm.installed_repositories[this.selected].directory, ds.sanitize_lua(SYSTEM_LUA_DIR)) then
-      sm.widgets.update.sensitive = false
-    else
-      sm.widgets.update.sensitive = true
+    if sm.run then
+      if string.match(sm.installed_repositories[this.selected].directory, ds.sanitize_lua(SYSTEM_LUA_DIR)) then
+        sm.widgets.update.sensitive = false
+      else
+        sm.widgets.update.sensitive = true
+      end
     end
   end,
   "placeholder",
@@ -1436,7 +1438,7 @@ sm.widgets.update = dt.new_widget("button"){
   label = _("update scripts"),
   tooltip = _("update the lua scripts from the repository"),
   clicked_callback = function(this)
-    update_scripts()
+    update_scripts(sm.installed_repositories[sm.widgets.update_script_choices.selected].directory)
   end
 }
 
