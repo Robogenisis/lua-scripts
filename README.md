@@ -250,7 +250,7 @@ the tools in the tools/ directory.
 More information about the scripting with Lua can be found in the darktable user manual:
 [Scripting with Lua](https://darktable.org.github.io/dtdocs/lua/)
 
-The [Lua API Manual](https://docs.darktable.org/lua/stable/lua.api.manual/) provides docuemntation of the
+The [Lua API Manual](https://docs.darktable.org/lua/stable/lua.api.manual/) provides documentation of the
 darktable Lua API.
 
 ## Troubleshooting
