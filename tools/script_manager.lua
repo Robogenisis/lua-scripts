@@ -19,7 +19,7 @@
     script_manager.lua - a tool for managing the darktable lua scripts
 
     script_manager is designed to be called from the users luarc file and used to
-    manage the lua scripts.
+    manage the lua scripts through an added "scripts" module in the lighttable view (bottom left).
 
     On startup script_manager scans the lua scripts directory to see what scripts are present.
     Scripts are sorted by 'folder' based on what sub-directory they are in.  With no 
