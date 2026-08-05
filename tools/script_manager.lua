@@ -1388,16 +1388,16 @@ end
 scan_scripts(LUA_DIR)
 log.msg(log.info, "finished processing scripts")
 
-if system_based then
-  -- exec user luarc file if it exists
-  local luarc = loadfile(USER_LUA_DIR .. "rc")
-  if luarc then
-    -- guard against the luarc re-requiring script_manager (see top of file)
-    _G.script_manager_loading = true
-    luarc()
-    _G.script_manager_loading = false
-  end
+-- exec user luarc file if it exists.
+local luarc = loadfile(USER_LUA_DIR .. "rc")
+if luarc then
+  -- guard against the luarc re-requiring script_manager (see top of file)
+  _G.script_manager_loading = true
+  luarc()
+  _G.script_manager_loading = false
+end
 
+if system_based then
   if df.test_file(USER_LUA_DIR, "d") then
     LUA_DIR = USER_LUA_DIR
     scan_scripts(LUA_DIR)
