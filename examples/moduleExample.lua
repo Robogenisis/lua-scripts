@@ -53,8 +53,8 @@ script_data.metadata = {
   help = "https://docs.darktable.org/lua/stable/lua.scripts.manual/scripts/examples/moduleexample/"
 }
 
-script_data.destroy = nil -- function to destory the script
-script_data.destroy_method = nil -- set to hide for libs since we can't destroy them commpletely yet, otherwise leave as nil
+script_data.destroy = nil -- function to destroy the script
+script_data.destroy_method = nil -- set to hide for libs since we can't destroy them completely yet, otherwise leave as nil
 script_data.restart = nil -- how to restart the (lib) script after it's been hidden - i.e. make it visible again
 script_data.show = nil -- only required for libs since the destroy_method only hides them
 
@@ -67,7 +67,7 @@ mE.event_registered = false  -- keep track of whether we've added an event callb
 mE.module_installed = false  -- keep track of whether the module is module_installed
 
 --[[ We have to create the module in one of two ways depending on which view darktable starts
-     in.  In orker to not repeat code, we wrap the darktable.register_lib in a local function.
+     in.  In order to not repeat code, we wrap the darktable.register_lib in a local function.
   ]]
 
 local function install_module()
